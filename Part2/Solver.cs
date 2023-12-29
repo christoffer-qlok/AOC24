@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Part2
 {
-    public class SolverExample
+    public class Solver
     {
         public static BigInteger SolveSystem(Line[] lines)
         {
@@ -18,13 +18,13 @@ namespace Part2
                 IntExpr dy = ctx.MkIntConst("dy");
                 IntExpr dz = ctx.MkIntConst("dz");
 
-                Solver s = ctx.MkSolver();
+                Microsoft.Z3.Solver s = ctx.MkSolver();
 
                 for (int i = 0; i < lines.Length; i++)
                 {
                     Line l = lines[i];
                     IntExpr t = ctx.MkIntConst($"t{i}");
-
+                    // x + t * dx = xi + t * dxi
                     s.Assert(ctx.MkEq(ctx.MkAdd(x, ctx.MkMul(dx, t)), ctx.MkAdd(ctx.MkInt(l.Pos.X), ctx.MkMul(ctx.MkInt(l.Delta.X), t))));
                     s.Assert(ctx.MkEq(ctx.MkAdd(y, ctx.MkMul(dy, t)), ctx.MkAdd(ctx.MkInt(l.Pos.Y), ctx.MkMul(ctx.MkInt(l.Delta.Y), t))));
                     s.Assert(ctx.MkEq(ctx.MkAdd(z, ctx.MkMul(dz, t)), ctx.MkAdd(ctx.MkInt(l.Pos.Z), ctx.MkMul(ctx.MkInt(l.Delta.Z), t))));

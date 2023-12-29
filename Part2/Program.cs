@@ -18,9 +18,7 @@
                 vecs.Add(new Line(pos[0], pos[1], pos[2], delta[0], delta[1], delta[2]));
             }
 
-
-
-            var ans = SolverExample.SolveSystem(vecs.ToArray());
+            var ans = Solver.SolveSystem(vecs.ToArray());
             Console.WriteLine($"Answer is: {ans}");
             //Console.WriteLine($"{ans.Item1} {ans.Item2} {ans.Item3} {ans.Item4} {ans.Item5} {ans.Item6}");
         }
